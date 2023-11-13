@@ -21,7 +21,8 @@ def posts(request):
             print("No image for", postsObjects[i].title)
         content = ""
         try:
-            content = postsObjects[i].content.split(".")[0]
+            content = postsObjects[i].content[:500]
+            content += "..."
         except Exception as e:
             print("No content")
         post.append(
