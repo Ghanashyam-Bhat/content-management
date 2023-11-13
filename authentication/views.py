@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+import models
 
 
 # Create your views here.
@@ -42,6 +43,8 @@ def signup_api(request):
         try:
             # Create a new user
             user = User.objects.create_user(username=email, password=password)
+            new = models.user(name=name, email=email)
+            new.save()
             login(request, user)
             return redirect("/")
         except Exception as e:

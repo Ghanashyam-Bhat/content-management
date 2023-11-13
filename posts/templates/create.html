@@ -215,19 +215,19 @@
 </head>
   <body>
       <div class="form-container">
-        <form class="form" action="/post/new/" method="POST">
+        <form class="form" action="{{ post_url }}" method="POST">
           {% csrf_token %}
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" required="">
+            <input type="text" id="title" name="title" value="{{ title }}" required="">
           </div>
           <div class="form-group">
             <label for="subheading">Subheading</label>
-            <input type="text" id="subheading" name="subheading" required="">
+            <input type="text" id="subheading" name="subheading" value="{{ subheading }}" required="">
           </div>
           <div class="form-group">
             <label for="textarea">Content</label>
-            <textarea name="content" id="content" rows="10" cols="50" required=""></textarea>
+            <textarea name="content" id="content" rows="10" cols="50" required="" value="{{ content }}"></textarea>
           </div>
           <div class="input-div" onclick="triggerFileInput()">
             <input id="fileInput" class="input" name="img" type="file" onchange="displayFileName()">
