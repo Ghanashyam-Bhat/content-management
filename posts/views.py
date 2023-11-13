@@ -42,6 +42,7 @@ def posts(request):
 
 @login_required(login_url="/auth/")
 def myPosts(request):
+    user = userModel.user.objects.get(email=request.user)
     colors = ["blue", "red", "orange", "green", "yellow", "brown", "grey"]
     postsObjects = models.post.objects.all()
     post = list()
@@ -61,7 +62,9 @@ def myPosts(request):
                 "tag": postsObjects[i].tag,
             }
         )
-    return render(request, "myposts.html", context={"posts": post})
+    return render(
+        request, "myposts.html", context={"user_name": user.name, "posts": post}
+    )
 
 
 @login_required(login_url="/auth/")
@@ -112,8 +115,7 @@ def createpost(request, id=None):
             subheading = post.subheading
             content = post.content
             tag = post.tag
-            post_url = f"/post/edit/{id}"
-            print("HEre")
+            post_url = f"/post/edit/{id}/"
         return render(
             request,
             "create.html",
@@ -137,6 +139,7 @@ def createpost(request, id=None):
             content = request.POST.get("content")
             tag = request.POST.get("tag")
             updated = datetime.now()
+
             new = models.post(
                 title=title,
                 subheading=subheading,
@@ -152,13 +155,15 @@ def createpost(request, id=None):
             post = models.post.objects.get(id=id)
             try:
                 image = request.FILES.get("img")
-                post.image = image
+                if image != None:
+                    post.image = image
             except Exception as e:
                 print("No image data")
             title = request.POST.get("title")
             subheading = request.POST.get("subheading")
             content = request.POST.get("content")
             updated = datetime.now()
+            tag = request.POST.get("tag")
 
             post.title = title
             post.subheading = subheading
