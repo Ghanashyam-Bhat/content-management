@@ -16,5 +16,5 @@ def postDetails(request, id):
     return render(request, "details.html")
 
 
-def createpost(request):
+def createpost(request, id=None):
     return render(request, "create.html")
