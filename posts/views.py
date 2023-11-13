@@ -17,4 +17,5 @@ def postDetails(request, id):
 
 
 def createpost(request, id=None):
-    return render(request, "create.html")
+    if request.method == "GET":
+        return render(request, "create.html")

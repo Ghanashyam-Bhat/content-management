@@ -8,4 +8,5 @@ class post(models.Model):
     subheading = models.CharField(max_length=1000)
     content = models.TextField(max_length=50000)
     image = models.ImageField(upload_to="uploads", null=True)
+    updated = models.DateTimeField()
     user = models.ForeignKey(user, on_delete=models.CASCADE)
