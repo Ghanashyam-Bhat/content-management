@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, 
+						initial-scale=1.0">
+	<title>My Posts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            }
+
+            body {
+            background-color: #f5f5f5;
+            
+            height: 100vh;
+            margin: 0;
+            }
+        .body{
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5rem;
+        }
+            a {
+        text-decoration: none;
+        color: #000;
+        }
+        .site-header { 
+        font-family: Helvetica;
+        border-bottom: 1px solid #ccc;
+        padding: .5em 1em;
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .site-identity h1 {
+        font-size: 1.5em;
+        margin: .6em 0;
+        display: inline-block;
+        }
+
+
+        .site-navigation ul, 
+        .site-navigation li {
+        margin: 0; 
+        padding: 0;
+        }
+
+        .site-navigation li {
+        display: inline-block;
+        margin: 1.4em 1em 1em 1em;
+        }
+
+            .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            }
+
+            .card-container {
+            width: 300px;
+            height: 440px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: auto;
+            box-shadow: 0 2px 20px rgba(0,0,0, 0.1);
+            overflow: hidden;
+            }
+
+            .card-image img {
+            height: 220px;
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            background-size: cover;
+            }
+
+            .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            padding: 16px;
+            min-height: 200px;
+            }
+
+            .card-badge {
+            text-transform: uppercase;
+            background-color: #fff;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 70px;
+            margin: 0;
+            font-size: 12px;
+            }
+
+            .card-badge-blue {
+            background-color: #92d4e4;
+            }
+
+            .card-badge-purple {
+            background-color: #3d1d94;
+            }
+
+            .card-badge-pink {
+            background-color: #c62bcb;
+            }
+
+            .card-body h1 {
+            font-size: 16px;
+            margin: 8px 0;
+            }
+
+            .card-body p {
+            font-size: 14px;
+            margin: 8px 0 16px 0;
+            }
+
+            .card-author {
+            display: flex;
+            align-items: center;
+            }
+
+            .card-author p {
+            margin: 0 16px;
+            font-size: 12px;
+            }
+
+            .card-author p:last-child {
+            color: #888;
+            }
+
+            .card-author img {
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+            margin-top: auto;
+            }
+
+            @media screen and (max-width: 1000px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            }
+    </style>
+</head>
+  <body>
+    <header class="site-header">
+        <div class="site-identity">
+          <h1><a href="#">My Posts</a></h1>
+        </div>  
+        <nav class="site-navigation">
+          <ul class="nav">
+            <li><a href="#">All Posts</a></li> 
+            <li><a href="#">Logout</a></li> 
+          </ul>
+        </nav>
+      </header>
+    <div class="body">
+
+    
+    <section class="container">
+      <div class="card-container">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1506422748879-887454f9cdff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="a city full of buildings" />
+        </div>
+        <div class="card-body">
+          <span class="card-badge card-badge-pink">Engineering</span>
+          <h1>
+            Living in downtown in the biggest cities
+          </h1>
+          <p class="card-subtitle">
+            Citizens of the biggest cities in the world talk about their lives
+          </p>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1506422748879-887454f9cdff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="a city full of buildings" />
+        </div>
+        <div class="card-body">
+          <span class="card-badge card-badge-pink">Engineering</span>
+          <h1>
+            Living in downtown in the biggest cities
+          </h1>
+          <p class="card-subtitle">
+            Citizens of the biggest cities in the world talk about their lives
+          </p>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1506422748879-887454f9cdff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="a city full of buildings" />
+        </div>
+        <div class="card-body">
+          <span class="card-badge card-badge-pink">Engineering</span>
+          <h1>
+            Living in downtown in the biggest cities
+          </h1>
+          <p class="card-subtitle">
+            Citizens of the biggest cities in the world talk about their lives
+          </p>
+        </div>
+      </div>
+    </section>
+    </div>
+  </body>
+</html>
