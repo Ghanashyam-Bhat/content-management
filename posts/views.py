@@ -8,37 +8,41 @@ from datetime import datetime
 # Create your views here.
 @login_required(login_url="/auth/")
 def posts(request):
-    user = userModel.user.objects.get(email=request.user)
-    colors = ["blue", "red", "orange", "green", "yellow", "brown", "grey"]
-    postsObjects = models.post.objects.all()
-    post = list()
+    try:
+        user = userModel.user.objects.get(email=request.user)
+        colors = ["blue", "red", "orange", "green", "yellow", "brown", "grey"]
+        postsObjects = models.post.objects.all()
+        post = list()
 
-    for i in range(len(postsObjects)):
-        url = None
-        try:
-            url = postsObjects[i].image.url
-        except Exception as e:
-            print("No image for", postsObjects[i].title)
-        content = ""
-        try:
-            content = postsObjects[i].content[:500]
-            content += "..."
-        except Exception as e:
-            print("No content")
-        post.append(
-            {
-                "id": postsObjects[i].id,
-                "color": colors[i % len(colors)],
-                "image": url,
-                "title": postsObjects[i].title,
-                "subheading": postsObjects[i].subheading,
-                "content": content,
-                "tag": postsObjects[i].tag,
-            }
+        for i in range(len(postsObjects)):
+            url = None
+            try:
+                url = postsObjects[i].image.url
+            except Exception as e:
+                print("No image for", postsObjects[i].title)
+            content = ""
+            try:
+                content = postsObjects[i].content[:500]
+                content += "..."
+            except Exception as e:
+                print("No content")
+            post.append(
+                {
+                    "id": postsObjects[i].id,
+                    "color": colors[i % len(colors)],
+                    "image": url,
+                    "title": postsObjects[i].title,
+                    "subheading": postsObjects[i].subheading,
+                    "content": content,
+                    "tag": postsObjects[i].tag,
+                }
+            )
+        return render(
+            request, "post_list.html", context={"user_name": user.name, "posts": post}
         )
-    return render(
-        request, "post_list.html", context={"user_name": user.name, "posts": post}
-    )
+    except Exception as e:
+        print("error:", e)
+        return redirect("/auth/")
 
 
 @login_required(login_url="/auth/")
