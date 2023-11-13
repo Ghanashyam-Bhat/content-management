@@ -8,11 +8,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @csrf_exempt
 def login_api(request):
-    if request.method == "GET":
-        return render(
-            request, "login_page.html", context={"message": "Success"}, status=201
-        )
-    elif request.method == "POST":
+    if request.method == "POST":
+        print(request.POST)
         try:
             email = request.POST["email"]
             password = request.POST["password"]
@@ -21,55 +18,48 @@ def login_api(request):
                 login(request, user)
                 return redirect("/")
             else:
-                return render(
-                    request,
-                    "login_page.html",
-                    context={"message": "User not availabe"},
-                    status=404,
-                )
+                return redirect("/auth/")
         except Exception as e:
-            return render(
-                request, "login_page.html", context={"message": "Error"}, status=501
-            )
+            print("Login error:", e)
+            return redirect("/auth/")
+    else:
+        return redirect("/auth/")
 
 
 @csrf_exempt
 def signup_api(request):
-    if request.method == "GET":
-        return render(
-            request, "signup_page.html", context={"message": "Success"}, status=201
-        )
-    elif request.method == "POST":
+    if request.method == "POST":
+        print(request.POST)
         email = request.POST["email"]
         password = request.POST["password"]
         cpassword = request.POST["cpassword"]
+        name = request.POST["name"]
         if password != cpassword:
-            return render(
-                request,
-                "signup_page.html",
-                context={"message": "Password mismatch"},
-                status=401,
-            )
+            return redirect("/auth")
         user = User.objects.filter(username=email).first()
         if user:
-            return render(
-                request,
-                "signup_page.html",
-                context={"message": "Account Exists"},
-                status=401,
-            )
+            return redirect("/auth/")
         try:
             # Create a new user
             user = User.objects.create_user(username=email, password=password)
             login(request, user)
-            return redirect("/auth/add_ac/")
+            return redirect("/")
         except Exception as e:
-            return render(
-                request, "signup_page.html", context={"message": "Error"}, status=501
-            )
+            print("Signup error:", e)
+            return redirect("/auth/")
+    else:
+        return redirect("/auth/")
 
 
-@login_required(login_url="/auth/login/")
+@csrf_exempt
+def authentication(request):
+    if request.method == "GET":
+        return render(
+            request, "authform.html", context={"message": "Success"}, status=201
+        )
+
+
+@login_required(login_url="/auth/")
 def logout_api(request):
     logout(request)
-    return redirect("/auth/login/")
+    return redirect("/auth/")
