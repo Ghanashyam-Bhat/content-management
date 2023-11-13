@@ -5,5 +5,6 @@ urlpatterns = [
     path("personal/", views.myPosts),
     path("new/", views.createpost),
     path("edit/<str:id>/", views.createpost),
-    path("<int:id>/", views.postDetails),
+    path("delete/<str:id>/", views.deletePost),
+    path("<str:id>/", views.postDetails),
 ]

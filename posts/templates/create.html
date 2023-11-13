@@ -215,7 +215,7 @@
 </head>
   <body>
       <div class="form-container">
-        <form class="form" action="{{ post_url }}" method="POST">
+        <form class="form" action="{{ post_url }}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
             <label for="title">Title</label>
@@ -227,7 +227,11 @@
           </div>
           <div class="form-group">
             <label for="textarea">Content</label>
-            <textarea name="content" id="content" rows="10" cols="50" required="" value="{{ content }}"></textarea>
+            <textarea name="content" id="content" rows="10" cols="50" required="" >{{ content }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="tag">Tag</label>
+            <input type="text" id="tag" name="tag" value="{{ tag }}" maxlength="15" required="">
           </div>
           <div class="input-div" onclick="triggerFileInput()">
             <input id="fileInput" class="input" name="img" type="file" onchange="displayFileName()">

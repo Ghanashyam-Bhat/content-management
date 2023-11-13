@@ -98,15 +98,31 @@
             }
 
             .card-badge-blue {
-            background-color: #92d4e4;
+            background-color: #0088FF;
             }
 
-            .card-badge-purple {
-            background-color: #3d1d94;
+            .card-badge-red {
+            background-color: #D62F1F;
             }
 
-            .card-badge-pink {
-            background-color: #c62bcb;
+            .card-badge-green {
+            background-color: #40BD00;
+            }
+
+            .card-badge-yellow {
+            background-color: #F5AF41;
+            }
+
+            .card-badge-orange {
+            background-color: #FF5722;
+            }
+
+            .card-badge-brown {
+            background-color: #C49863;
+            }
+
+            .card-badge-grey {
+            background-color: #424242;
             }
 
             .card-body h1 {
@@ -187,8 +203,8 @@
         </div>  
         <nav class="site-navigation">
           <ul class="nav">
-            <li><a href="#">All Posts</a></li> 
-            <li><a href="#">Logout</a></li> 
+            <li><a href="/">All Posts</a></li> 
+            <li><a href="/auth/logout/">Logout</a></li> 
           </ul>
         </nav>
       </header>
@@ -196,92 +212,36 @@
 
     
     <section class="container">
+      {% for post in posts %}
       <div class="card-container">
         <div class="card-image">
-          <img src="https://images.unsplash.com/photo-1506422748879-887454f9cdff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="a city full of buildings" />
+          <img src="{{ post.image }}" alt="{{ post.title }}" />
         </div>
         <div class="card-body">
-          <span class="card-badge card-badge-pink">Engineering</span>
+          <span class="card-badge card-badge-{{ post.color }}">{{ post.tag }}</span>
           <h1>
-            Living in downtown in the biggest cities
+            {{ post.title }}
           </h1>
           <p class="card-subtitle">
-            Citizens of the biggest cities in the world talk about their lives
+            {{ post.subheading }}
           </p>
         </div>
         <div class="card-actions">
-          <a href="#" class="delete-icon">
+          <a href="/post/delete/{{ post.id }}/" class="delete-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
               <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
             </svg>
           </a>
-          <a href="#" class="edit-icon">
+          <a href="/post/edit/{{ post.id }}/" class="edit-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
             </svg>
           </a>
         </div>
-      </div>
-
-      <div class="card-container">
-        <div class="card-image">
-          <img src="https://images.unsplash.com/photo-1506422748879-887454f9cdff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="a city full of buildings" />
-        </div>
-        <div class="card-body">
-          <span class="card-badge card-badge-pink">Engineering</span>
-          <h1>
-            Living in downtown in the biggest cities
-          </h1>
-          <p class="card-subtitle">
-            Citizens of the biggest cities in the world talk about their lives
-          </p>
-        </div>
-        <div class="card-actions">
-          <a href="#" class="delete-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-            </svg>
-          </a>
-          <a href="#" class="edit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="card-container">
-        <div class="card-image">
-          <img src="https://images.unsplash.com/photo-1506422748879-887454f9cdff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="a city full of buildings" />
-        </div>
-        <div class="card-body">
-          <span class="card-badge card-badge-pink">Engineering</span>
-          <h1>
-            Living in downtown in the biggest cities
-          </h1>
-          <p class="card-subtitle">
-            Citizens of the biggest cities in the world talk about their lives
-          </p>
-        </div>
-        <div class="card-actions">
-          <a href="#" class="delete-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-            </svg>
-          </a>
-          <a href="#" class="edit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
+      </div>     
+      {% endfor %}
     </section>
     </div>
   </body>
