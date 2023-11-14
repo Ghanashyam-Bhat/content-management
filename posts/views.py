@@ -11,7 +11,7 @@ def posts(request):
     try:
         user = userModel.user.objects.get(email=request.user)
         colors = ["blue", "red", "orange", "green", "yellow", "brown", "grey"]
-        postsObjects = models.post.objects.all()
+        postsObjects = models.post.objects.all().order_by("-updated")
         post = list()
 
         for i in range(len(postsObjects)):
@@ -49,7 +49,9 @@ def posts(request):
 def myPosts(request):
     user = userModel.user.objects.get(email=request.user)
     colors = ["blue", "red", "orange", "green", "yellow", "brown", "grey"]
-    postsObjects = models.post.objects.all()
+    postsObjects = models.post.objects.filter(user__email=request.user).order_by(
+        "-updated"
+    )
     post = list()
     for i in range(len(postsObjects)):
         url = None
@@ -88,6 +90,7 @@ def postDetails(request, id):
                 "image": url,
                 "title": suggestion.title,
                 "subheading": suggestion.subheading,
+                "id": suggestion.id,
             }
         )
     data = {

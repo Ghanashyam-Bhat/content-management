@@ -163,13 +163,13 @@
             <aside class="aside">
               <h4 class="heading">Other posts by the author</h4>
               {% for suggestion in suggestions %}
-              <div class="card">
+              <a class="card" href="/post/{{ suggestion.id }}/">
                 <img src='{{ suggestion.image }}' alt=''>
                 <div>
                   <p class="heading title">{{ suggestion.title }}</p>
                   <p class="subheading">{{ suggestion.subheading }}</p>
                 </div>
-              </div>
+              </a>
               {% endfor %}
             </aside>
             <footer class="footer">
